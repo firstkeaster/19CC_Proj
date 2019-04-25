@@ -18,7 +18,7 @@ def plotFunc(*args):
     plt.setp(l, markerfacecolor='C0')
     # if os.path.exists(basedir + '/images/' + 'tester.png'):
     #     os.remove(basedir + '/images/' + 'tester.png')
-    figName = 'tester.png'
+    figName = 'figure' + str(args[0]) + '.png'
     plt.savefig(basedir + '/images/' + figName)
     return figName
 
