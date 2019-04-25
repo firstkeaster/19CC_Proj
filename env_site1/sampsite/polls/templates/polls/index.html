@@ -1,0 +1,13 @@
+<!-- This is a comment of html -->
+{% if latest_question_list %}
+    <ul>
+        <!-- In this condition, set up a for loop -->
+        {% for question in latest_question_list %}
+            <li>
+                <a href="{% url 'polls:detail' question.id %}">{{question.question_text}}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available</p>
+{% endif %}

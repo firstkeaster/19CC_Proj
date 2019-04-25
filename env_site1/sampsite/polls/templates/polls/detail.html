@@ -1,0 +1,23 @@
+<h1>{{question.question_text}}</h1>
+
+{% if error_message %}
+    <p><strong>{{error_message}}</strong></p>
+{% endif %}
+<!-- polls:vote is using namespace defined in url.py,
+since we gave app_name a value of 'polls',
+and name of url for vote is 'vote'. -->
+<form action = "{% url 'polls:vote' question.id %}" method="post">
+    <!-- csrf_token is for security reasons -->
+    {% csrf_token %}
+    {% for choice in question.choice_set.all %}
+        <!-- Create a radio button -->
+        <input type="radio" name="choice"
+               id="choice{{ forloop.counter }}"
+               value="{{choice.id}}" />
+        <!-- Create a label -->
+        <label for="choice{{forloop.counter}}">{{choice.choice_text}}</label>
+        <br>
+    {% endfor %}
+
+    <input type="submit" value="Vote" />
+</form>
